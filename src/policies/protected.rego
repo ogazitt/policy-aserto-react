@@ -1,8 +1,12 @@
 package asertodemo.GET.api.protected
 
-default allowed = false
+import input.policy.path
+import input.user.attributes.roles as user_roles
+
+
+default allow = false
 
 allowed {
     some index
-    input.user.attributes.roles[index] == "admin"
+    data.roles[user_roles[index]].perms[path].allowed
 }
